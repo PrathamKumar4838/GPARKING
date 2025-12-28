@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Parking v5.0 (Laptop View)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- VIDEO BACKGROUND (Optional) -->
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        
+        <!-- LOGIN CARD -->
+        <div id="loginSection" class="glass-card">
+            <div class="header">
+                <h2>🎓 College Parking</h2>
+                <p>Secure Student Portal</p>
+            </div>
+
+            <form id="loginForm" onsubmit="return false;">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" id="email" placeholder="Email or Username" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+
+                <button id="loginBtn" class="login-btn">
+                    SIGN IN <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="footer-text">
+                <p>New Student? <a href="#" onclick="alert('Just login with any new username & password to register!')">First time login auto-registers</a></p>
+                <p class="admin-link">Admin? <a href="#" onclick="fillAdmin()">Click here</a></p>
+            </div>
+        </div>
+
+        <!-- VEHICLE SETUP (Hidden initially) -->
+        <div id="vehicleSetup" class="glass-card hidden">
+            <h2>🚗 Vehicle Setup</h2>
+            <p>Complete your profile to continue</p>
+            
+            <div class="input-group">
+                <i class="fas fa-car"></i>
+                <input type="text" id="newVehicle" placeholder="Vehicle Number (e.g. KA01AB1234)">
+            </div>
+
+            <p style="margin: 15px 0 5px; color: #555;">Select Vehicle Type:</p>
+            <div class="radio-group">
+                <label class="radio-box">
+                    <input type="radio" name="vType" value="car" checked>
+                    <span>🚗 Car</span>
+                </label>
+                <label class="radio-box">
+                    <input type="radio" name="vType" value="bike">
+                    <span>🏍️ Bike</span>
+                </label>
+            </div>
+
+            <button id="saveVehicleBtn" class="login-btn">SAVE & CONTINUE</button>
+        </div>
+
+        <!-- DASHBOARD (Laptop Layout) -->
+        <div id="dashboardSection" class="dashboard-container hidden">
+            
+            <!-- LEFT SIDEBAR -->
+            <div class="dash-header">
+                <div class="user-welcome">
+                    <h2 id="welcomeUser">Welcome</h2>
+                    <p id="userRole">Loading...</p>
+                </div>
+                
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- RIGHT MAIN CONTENT -->
+            <div class="dash-content">
+                
+                <!-- Admin Controls -->
+                <div id="adminControls" class="admin-panel hidden">
+                    <h3>🛠️ Admin Mode Active</h3>
+                    <div class="admin-actions">
+                        <button id="resetCarsBtn" class="danger-btn">Reset All Cars</button>
+                        <button id="resetBikesBtn" class="danger-btn">Reset All Bikes</button>
+                    </div>
+                </div>
+
+                <!-- Stats Row -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div>
+                            <h3 id="availCar">0</h3>
+                            <p>Available Cars</p>
+                        </div>
+                        <i class="fas fa-car fa-3x" style="color: #dfe6e9;"></i>
+                    </div>
+                    <div class="stat-card" style="border-left-color: #00cec9;">
+                        <div>
+                            <h3 id="availBike">0</h3>
+                            <p>Available Bikes</p>
+                        </div>
+                        <i class="fas fa-motorcycle fa-3x" style="color: #dfe6e9;"></i>
+                    </div>
+                </div>
+
+                <!-- Grids -->
+                <h3 class="zone-label"><i class="fas fa-car-side"></i> Car Zone</h3>
+                <div id="carGrid" class="parking-grid"></div>
+
+                <h3 class="zone-label"><i class="fas fa-bicycle"></i> Bike Zone</h3>
+                <div id="bikeGrid" class="parking-grid"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script type="module" src="script.js"></script>
+    <script>
+        function fillAdmin() {
+            document.getElementById('email').value = 'admin';
+            document.getElementById('password').value = 'admin123';
+        }
+    </script>
+</body>
+</html>
